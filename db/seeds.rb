@@ -1,4 +1,3 @@
-
 Garden.destroy_all
 Plant.destroy_all
 GardenPlant.destroy_all
@@ -88,13 +87,10 @@ clover = Plant.create!(
 )
 
   GardenPlant.create!(garden: garden1, plant: tomato)
-  GardenPlant.create!(garden: garden1, plant: carrot)
-  
+  GardenPlant.create!(garden: garden1, plant: carrot)  
   GardenPlant.create!(garden: garden3, plant: lavender)
-  GardenPlant.create!(garden: garden3, plant: sunflower)
-  
+  GardenPlant.create!(garden: garden3, plant: sunflower)  
   GardenPlant.create!(garden: garden2, plant: rose)
-  GardenPlant.create!(garden: garden2, plant: tulip)
-  
+  GardenPlant.create!(garden: garden2, plant: tulip)  
   GardenPlant.create!(garden: garden4, plant: moss)
   GardenPlant.create!(garden: garden4, plant: clover)
