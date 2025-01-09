@@ -2,6 +2,7 @@ class API::V1:RecommendationController < ApplicationController
 
   def index
     #call the openai gateway method to actually get data
+    require 'pry'; binding.pry
     stub_json = {
       data: {
         id: 1,
@@ -18,7 +19,7 @@ class API::V1:RecommendationController < ApplicationController
       }
     }
 
-    
+
 
   end
 end

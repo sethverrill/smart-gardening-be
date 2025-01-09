@@ -1,4 +1,8 @@
 require 'simplecov'
+require 'webmock/rspec'
+require 'vcr'
+require 'factory_bot'
+
 SimpleCov.start 'rails' do
   add_filter '/spec/'
 end
@@ -17,7 +21,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 end
 
-require 'vcr'
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
