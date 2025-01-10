@@ -2,7 +2,7 @@ class Api::V1::RecommendationController < ApplicationController
 
   def index
     #call the openai gateway method to actually get data using params
-    # require 'pry'; binding.pry
+
     stub_json = {
       data: [
         {
@@ -26,6 +26,5 @@ class Api::V1::RecommendationController < ApplicationController
 
     render json: RecommendationSerializer.format_recommendations(stub_json[:data]), status: 200
   end
-
-  private
+  
 end
