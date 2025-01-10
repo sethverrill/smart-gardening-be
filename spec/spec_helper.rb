@@ -1,11 +1,13 @@
 require 'simplecov'
+# SimpleCov.start 'rails' do
+#   add_filter '/spec/'
+# end
+SimpleCov.start
 require 'webmock/rspec'
 require 'vcr'
 require 'factory_bot'
 
-SimpleCov.start 'rails' do
-  add_filter '/spec/'
-end
+
 require 'pry'
 
 WebMock.disable_net_connect!(allow_localhost: true)
