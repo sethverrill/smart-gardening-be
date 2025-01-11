@@ -6,4 +6,5 @@ class Api::V1::GardensController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     render json: { error: "Garden not found" }, status: :not_found
   end
+
 end

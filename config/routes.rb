@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recommendation, only: [:index]
       resources :gardens, only: [:show]
+      patch ':garden_id', to: 'garden_plants#update'
     end
   end
 end
