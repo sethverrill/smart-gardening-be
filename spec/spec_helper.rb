@@ -1,7 +1,13 @@
 require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter '/spec/'
-end
+# SimpleCov.start 'rails' do
+#   add_filter '/spec/'
+# end
+SimpleCov.start
+require 'webmock/rspec'
+require 'vcr'
+require 'factory_bot'
+
+
 require 'pry'
 
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -17,7 +23,6 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 end
 
-require 'vcr'
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
