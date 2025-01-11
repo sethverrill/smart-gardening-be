@@ -4,38 +4,38 @@ GardenPlant.destroy_all
 
 garden1 = Garden.create!(
   name: "Vegetable Garden",
-  hardiness_zone: "6a",
+  zip_code: "80209",
   sunlight: "Full Sun",
-  soil_type: "Loam",
+  soil_type: "Loamy",
   water_needs: "High",
-  purpose: "Edible"
+  purpose: "Food Production"
 )
 
 garden2 = Garden.create!(
   name: "Flower Garden",
-  hardiness_zone: "6b",
+  zip_code: "80422",
   sunlight: "Partial Shade",
-  soil_type: "Sandy",
+  soil_type: "Peaty",
   water_needs: "Low",
   purpose: "Aesthetic"
 )
 
 garden3 = Garden.create!(
   name: "Pollinator Garden",
-  hardiness_zone: "5b",
+  zip_code: "80421",
   sunlight: "Full Shade",
   soil_type: "Clay",
   water_needs: "Medium",
-  purpose: "Pollinator"
+  purpose: "Medicinal"
 )
 
 garden4 = Garden.create!(
   name: "Coverage Garden",
-  hardiness_zone: "7a",
+  zip_code: "80222",
   sunlight: "Partial Shade",
-  soil_type: "Rocky",
+  soil_type: "Sandy",
   water_needs: "Low",
-  purpose: "Ground Cover"
+  purpose: "Recreation"
 )
 
 tomato = Plant.create!(
