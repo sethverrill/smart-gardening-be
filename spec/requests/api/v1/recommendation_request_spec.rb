@@ -47,7 +47,19 @@ RSpec.describe 'Recommendation API', type: :request do
 
       json = JSON.parse(response.body, symbolize_names: true)
 
-      binding.pry
+      expect(json[:id]).to eq("mock-chatcmpl-123")
+
+      expect(json[:data].length).to eq(2)
+
+      expect(json[:data][0][:index]).to eq(1)
+      expect(json[:data][0][:attributes][:name]).to eq("Strawberry")
+      expect(json[:data][0][:attributes][:description]).to eq("Thrives in loamy soil and full sun, ideal for food production.")
+      expect(json[:data][0][:attributes][:image]).to eq("https://example.com/mock-strawberry.jpg")
+
+      expect(json[:data][1][:index]).to eq(2)
+      expect(json[:data][1][:attributes][:name]).to eq("Basil")
+      expect(json[:data][1][:attributes][:description]).to eq("Aromatic herb thriving in full sun with moderate watering.")
+      expect(json[:data][1][:attributes][:image]).to eq("https://example.com/mock-basil.jpg")
     end
   end
 end
