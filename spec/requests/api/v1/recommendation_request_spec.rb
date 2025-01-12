@@ -31,5 +31,23 @@ RSpec.describe 'Recommendation API', type: :request do
               headers: { 'Content-Type' => 'application/json' }
             )
     end
+
+    it 'returns recommendations based on valid parameters' do
+      get "/api/v1/recommendation", 
+          params: { 
+            zip: 80221, 
+            sunlight: "full_sun", 
+            soil_type: "clay", 
+            water_needs: "low_water", 
+            purpose: "edible" 
+          }, 
+          as: :json
+      
+      expect(response).to be_successful
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      binding.pry
+    end
   end
 end
