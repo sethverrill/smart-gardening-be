@@ -1,4 +1,7 @@
 class Api::V1::GardenPlantsController < ApplicationController
+  #added the 2 below to all for POST calls
+    protect_from_forgery with: :null_session
+    skip_before_action :verify_authenticity_token
 
     def update
         garden = Garden.find(params[:garden_id])
