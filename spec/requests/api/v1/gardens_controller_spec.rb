@@ -28,4 +28,44 @@ RSpec.describe "Api::V1::Gardens", type: :request do
     json = JSON.parse(response.body, symbolize_names: true)
     expect(json[:error]).to eq("Garden not found")
   end
+
+  describe 'POST /api/v1/gardens' do
+    let(:garden_attributes) do
+      {
+        garden: {
+          name: 'Herb Garden',
+          zip_code: '12345',
+          sunlight: 'Full Sun',
+          soil_type: 'Loamy',
+          water_needs: 'Moderate',
+          purpose: 'Food Production'
+        }
+      }
+    end
+
+    it 'can create a garden' do
+      post '/api/v1/gardens', params: garden_attributes
+
+      expect(response).to have_http_status(:created)
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response).to have_key('data')
+      expect(parsed_response['data']).to have_key('id')
+
+      garden= Garden.last
+      expect(garden.name).to eq('Herb Garden')
+      expect(garden.zip_code).to eq('12345')
+      expect(garden.sunlight).to eq('Full Sun')
+    end
+
+    it 'returns validation errors' do
+      invalid_attributes = { garden: { name: '', zip_code: '' } }
+
+      post '/api/v1/gardens', params: invalid_attributes
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response).to have_key('errors')
+      expect(parsed_response['errors']).to include("Name can't be blank", "Zip code can't be blank")
+    end
+  end
 end
