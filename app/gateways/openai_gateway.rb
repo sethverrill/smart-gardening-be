@@ -4,22 +4,29 @@ class OpenAIGateway
 
     response = Faraday.post("https://api.openai.com/v1/chat/completions") do |req|
       req.headers['Content-Type'] = 'application/json'
-      req.headers['Authorization'] = "Bearer #{ENV['OPENAI_API_KEY']}"
+      req.headers['Authorization'] = "Bearer #{Rails.application.credentials.dig(:open_ai, :key)}"
       req.body = {
         model: "gpt-4o-mini",
         messages: [{ role: "user", content: prompt }],
         max_tokens: 300,
-        temperature: 0.7
+        temperature: 0.5
       }.to_json
     end
 
     if response.status == 200
       api_response = JSON.parse(response.body, symbolize_names: true)
-      {
-        success: true,
-        id: api_response[:id],
-        data: JSON.parse(api_response[:choices][0][:message][:content])
-      }
+      raw_content = api_response[:choices][0][:message][:content]
+  
+      cleaned_content = raw_content.match(/\[.*\]/m)&.to_s
+      if cleaned_content
+        {
+          success: true,
+          id: api_response[:id],
+          data: JSON.parse(cleaned_content)
+        }
+      else
+        { success: false, error: "Unable to parse JSON from OpenAI response." }
+      end
     else
       { success: false, error: "Failed to fetch plant recommendations." }
     end
@@ -34,14 +41,11 @@ class OpenAIGateway
       Suggest 2-3 plants for a garden based on these criteria:
       Zip: #{params[:zip]}, Sunlight: #{params[:sunlight]}, Soil: #{params[:soil_type]},
       Water: #{params[:water_needs]}, Purpose: #{params[:purpose]}.
-      Return JSON with the following structure:
-      [
-        {
-          \"name\": \"Plant Name\",
-          \"description\": \"Brief sentence about why this plant is suitable.\",
-          \"image\": \"URL to a real example image of the plant\"
-        }
-      ]
+      ONLY return a JSON array where each element has the following keys:
+      - name: the plant's name
+      - description: a brief sentence about why this plant is suitable
+      - image: a URL to a real example image of the plant.
+      Do NOT include any additional text or explanation.
     "
   end
 end
