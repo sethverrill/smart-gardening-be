@@ -1,23 +1,26 @@
 class Api::V1::RecommendationController < ApplicationController
 
   def index
-    if Rails.env.test? || Rails.env.development?
-      # Checks if it is in testing or dev environments so it can mock response (will remove line 5 later)
-      mock_response_id = "mock-chatcmpl-123"
-      stub_json = [
-        {
-          name: "Strawberry",
-          description: "Thrives in loamy soil and full sun, ideal for food production.",
-          image: "https://example.com/mock-strawberry.jpg"
-        },
-        {
-          name: "Basil",
-          description: "Aromatic herb thriving in full sun with moderate watering.",
-          image: "https://example.com/mock-basil.jpg"
-        }
-      ]
-      render json: RecommendationSerializer.format_recommendations(stub_json, mock_response_id), status: 200
+    if params[:zip].blank?
+      render json: { error: "Zip code is required." }, status: 400
       return
+    end
+
+    processed_params = RecommendationParamsProcessor.new(params).process
+
+    if Rails.env.test? || Rails.env.development?
+      mock_response = File.read("spec/fixtures/recommendation_stubbed_response.json")
+      api_response = JSON.parse(mock_response, symbolize_names: true)
+      render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
+      return
+    end
+
+    api_response = OpenAIGateway.new.generate_recommendations(processed_params)
+
+    if api_response[:success]
+      render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
+    else
+      render json: { error: api_response[:error] }, status: 500
     end
   end
 end
