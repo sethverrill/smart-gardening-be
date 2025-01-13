@@ -17,6 +17,8 @@ RSpec.describe 'Recommendation API', type: :request do
             purpose: "edible" 
           }, 
           as: :json
+
+      Rails.logger.info("Response Body: #{response.body}")
       
       expect(response).to be_successful
 

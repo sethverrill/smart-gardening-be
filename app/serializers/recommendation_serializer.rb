@@ -7,9 +7,9 @@ class RecommendationSerializer
           index: index,
           type: "plant",
           attributes: {
-            name: recommendation[:name],
-            description: recommendation[:description],
-            image: recommendation[:image]
+            name: recommendation[:name] || recommendation["name"],
+            description: recommendation[:description] || recommendation["description"],
+            image: recommendation[:image] || recommendation["image"]
           }
         }
       end

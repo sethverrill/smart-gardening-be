@@ -9,7 +9,7 @@ class OpenAIGateway
         model: "gpt-4o-mini",
         messages: [{ role: "user", content: prompt }],
         max_tokens: 300,
-        temperature: 0.5
+        temperature: 0.7
       }.to_json
     end
 
