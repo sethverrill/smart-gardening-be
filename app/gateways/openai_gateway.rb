@@ -15,9 +15,9 @@ class OpenAIGateway
 
     if response.status == 200
       api_response = JSON.parse(response.body, symbolize_names: true)
-      raw_content = api_response[:choices][0][:message][:content]
-  
-      cleaned_content = raw_content.match(/\[.*\]/m)&.to_s
+      raw_content = api_response.dig(:choices, 0, :message, :content)
+    
+      cleaned_content = raw_content.match(/\[.*\]/m)&.to_s if raw_content
       if cleaned_content
         {
           success: true,
@@ -25,13 +25,13 @@ class OpenAIGateway
           data: JSON.parse(cleaned_content)
         }
       else
-        { success: false, error: "Unable to parse JSON from OpenAI response." }
+        { success: false, error: "Unexpected response format from OpenAI." }
       end
     else
       { success: false, error: "Failed to fetch plant recommendations." }
     end
-  rescue => error
-    { success: false, error: "An error occurred: #{error.message}" }
+    rescue => error
+      { success: false, error: "An error occurred: #{error.message}" }
   end
 
   private

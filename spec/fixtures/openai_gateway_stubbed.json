@@ -1,0 +1,10 @@
+{
+  "id": "mock-chatcmpl-123",
+  "choices": [
+    {
+      "message": {
+        "content": "[{\"name\":\"Tomato\",\"description\":\"Thrives in full sun.\",\"image\":\"https://example.com/tomato.jpg\"},{\"name\":\"Basil\",\"description\":\"Loves moderate water and sun.\",\"image\":\"https://example.com/basil.jpg\"}]"
+      }
+    }
+  ]
+}

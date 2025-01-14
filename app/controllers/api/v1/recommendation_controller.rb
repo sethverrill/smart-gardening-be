@@ -18,10 +18,6 @@ class Api::V1::RecommendationController < ApplicationController
 
     api_response = OpenAIGateway.new.generate_recommendations(processed_params)
 
-    if api_response[:success]
-      render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
-    else
-      render json: { error: api_response[:error] }, status: 500
-    end
+    render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
   end
 end
