@@ -15,6 +15,24 @@ class Api::V1::GardenPlantsController < ApplicationController
         render json: GardenPlantSerializer.format(garden), status: 200
     end
 
+    def destroy
+        garden = Garden.find_by(id: params[:garden_id])
+        
+        if garden.nil?
+          render json: { error: 'Garden not found' }, status: :not_found
+          return
+        end
+      
+        garden_plant = GardenPlant.find_by(garden_id: garden.id, plant_id: params[:plant_id])
+      
+        if garden_plant
+          garden_plant.destroy
+          render json: { message: 'Garden plant removed successfully' }, status: :ok
+        else
+          render json: { error: 'Garden plant not found' }, status: :not_found
+        end
+      end
+
     private
     def plant_params
         params.permit(:name, :img_url,:description)
