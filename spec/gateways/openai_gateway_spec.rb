@@ -5,7 +5,7 @@ RSpec.describe OpenAIGateway do
   describe "generate_recommendations" do
     let(:valid_params) do
       {
-        zip: "80221",
+        zip_code: "80221",
         sunlight: "Full Sun",
         soil_type: "Loamy",
         water_needs: "Moderate",
