@@ -124,4 +124,19 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             expect(json[:error]).to eq("Garden not found")
         end
     end
+
+    describe "DELETE /api/v1/:garden_id/:plant_id" do
+        it "can delete a garden plant" do
+            garden_plant = GardenPlant.find_by(garden: @garden1, plant: @tulip)
+            expect(garden_plant).to be_present
+          
+            delete "/api/v1/gardens/#{@garden1.id}/plants/#{@tulip.id}"            
+            expect(response).to have_http_status(:ok)
+            json = JSON.parse(response.body, symbolize_names: true)
+            expect(json[:message]).to eq('Garden plant removed successfully')
+          
+            expect(GardenPlant.exists?(garden_plant.id)).to be_falsey
+        end
+    end
+      
 end
