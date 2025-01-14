@@ -1,30 +1,23 @@
 class Api::V1::RecommendationController < ApplicationController
+  require_relative '../../../gateways/openai_gateway'
 
   def index
-    #call the openai gateway method to actually get data using params
+    if params[:zip_code].blank?
+      render json: { error: "Zip code is required." }, status: 400
+      return
+    end
 
-    stub_json = {
-      data: [
-        {
-          id: 1,
-          type: "plant",
-          attributes: {
-            name: 'strawberry',
-            short_description: 'red',
-            img_url: 'https://foodal.com/wp-content/uploads/2015/03/Make-Strawberry-Season-Last-All-Year.jpg'}
-        },
-        {
-          id: 2,
-          type: "plant",
-          attributes: {
-            name: 'basil',
-            short_description: 'green',
-            img_url: 'https://the-growers.com/wp-content/uploads/2019/04/Basil-Leaves-Closeup.jpg'}
-        }
-      ]
-    }
+    processed_params = RecommendationParamsProcessor.new(params).process
 
-    render json: RecommendationSerializer.format_recommendations(stub_json[:data]), status: 200
+    if Rails.env.test? || Rails.env.development?
+      mock_response = File.read("spec/fixtures/recommendation_stubbed_response.json")
+      api_response = JSON.parse(mock_response, symbolize_names: true)
+      render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
+      return
+    end
+
+    api_response = OpenAIGateway.new.generate_recommendations(processed_params)
+
+    render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
   end
-  
 end
