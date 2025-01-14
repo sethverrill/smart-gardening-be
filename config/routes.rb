@@ -11,12 +11,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root 'gardens#index'
 
   namespace :api do
     namespace :v1 do
       resources :recommendation, only: [:index]
-      resources :gardens, only: [:show]
-      resources :gardens, only: [:create]      
+      resources :gardens, only: [:show, :create, :update]  
       patch ':garden_id', to: 'garden_plants#update'
     end
   end
