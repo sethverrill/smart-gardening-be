@@ -11,7 +11,7 @@ class RecommendationParamsProcessor
 
   def process
     {
-      zip: @params[:zip],
+      zip_code: @params[:zip_code],
       sunlight: process_field(:sunlight),
       soil_type: process_field(:soil_type),
       water_needs: process_field(:water_needs),

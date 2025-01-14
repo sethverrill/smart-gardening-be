@@ -39,7 +39,7 @@ class OpenAIGateway
   def build_prompt(params)
     "
       Suggest 2-3 plants for a garden based on these criteria:
-      Zip: #{params[:zip]}, Sunlight: #{params[:sunlight]}, Soil: #{params[:soil_type]},
+      Zip: #{params[:zip_code]}, Sunlight: #{params[:sunlight]}, Soil: #{params[:soil_type]},
       Water: #{params[:water_needs]}, Purpose: #{params[:purpose]}.
       ONLY return a JSON array where each element has the following keys:
       - name: the plant's name

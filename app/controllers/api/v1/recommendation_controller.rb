@@ -2,7 +2,7 @@ class Api::V1::RecommendationController < ApplicationController
   require_relative '../../../gateways/openai_gateway'
 
   def index
-    if params[:zip].blank?
+    if params[:zip_code].blank?
       render json: { error: "Zip code is required." }, status: 400
       return
     end

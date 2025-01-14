@@ -11,7 +11,7 @@ RSpec.describe 'Recommendation API', type: :request do
       it 'returns recommendations based on valid parameters' do
         get "/api/v1/recommendation", 
             params: { 
-              zip: 80221, 
+              zip_code: 80221, 
               sunlight: "full_sun", 
               soil_type: "clay", 
               water_needs: "low_water", 
