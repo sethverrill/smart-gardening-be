@@ -137,6 +137,24 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
           
             expect(GardenPlant.exists?(garden_plant.id)).to be_falsey
         end
+
+        it "returns a 404 if the garden is not found" do
+            delete "/api/v1/gardens/9999999/plants/#{@tulip.id}"
+        
+            expect(response).to have_http_status(:not_found)
+        
+            json = JSON.parse(response.body, symbolize_names: true)
+            expect(json[:error]).to eq("Garden not found")
+          end
+        
+          it "returns a 404 if the garden plant is not found" do
+            delete "/api/v1/gardens/#{@garden1.id}/plants/9999999"
+        
+            expect(response).to have_http_status(:not_found)
+        
+            json = JSON.parse(response.body, symbolize_names: true)
+            expect(json[:error]).to eq("Garden plant not found")
+          end
     end
       
 end
