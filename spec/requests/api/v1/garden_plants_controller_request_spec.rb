@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             patch "/api/v1/#{@garden1.id}", params: plant_params
 
             json_response = JSON.parse(response.body, symbolize_names: true)
-                expect(json_response[:errors]).to eq(["Validation failed: Img url can't be blank"])
+                expect(json_response[:error]).to eq(["Validation failed: Img url can't be blank"])
         end
 
         it "disregards additional fields" do
