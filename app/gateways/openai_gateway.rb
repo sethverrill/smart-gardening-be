@@ -30,7 +30,7 @@ class OpenaiGateway
     else
       { success: false, error: "Failed to fetch plant recommendations." }
     end
-    rescue => error
+  rescue => error
       { success: false, error: "An error occurred: #{error.message}" }
   end
 
