@@ -160,10 +160,10 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
     describe "GET /api/v1/:garden_id" do
         it "can return a garden's plants" do
             get "/api/v1/#{@garden1.id}/plants"
-            #binding.pry
+       
             expect(response).to be_successful
             json = JSON.parse(response.body, symbolize_names: true)
-            #binding.pry
+      
             expect(json[:data].length).to eq(2)
             expect(json[:data][0][:type]). to eq("plant")
             expect(json[:data][0][:attributes][:name]). to eq(@tulip[:name])
