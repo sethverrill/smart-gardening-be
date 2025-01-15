@@ -1,4 +1,4 @@
-class OpenAIGateway
+class OpenaiGateway
   def generate_recommendations(params)
     prompt = build_prompt(params)
 

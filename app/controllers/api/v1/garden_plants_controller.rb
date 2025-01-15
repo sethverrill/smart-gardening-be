@@ -31,7 +31,7 @@ class Api::V1::GardenPlantsController < ApplicationController
         else
           render json: { error: 'Garden plant not found' }, status: :not_found
         end
-      end
+    end
 
     private
     def plant_params
