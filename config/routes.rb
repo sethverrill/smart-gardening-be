@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :gardens, only: [:show, :create, :update]  
       patch ':garden_id', to: 'garden_plants#update'
       delete '/gardens/:garden_id/plants/:plant_id', to: 'garden_plants#destroy'
+      get ':garden_id/plants', to: 'garden_plants#show'
     end
   end
 end
