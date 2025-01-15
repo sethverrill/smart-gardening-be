@@ -156,5 +156,33 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             expect(json[:error]).to eq("Garden plant not found")
           end
     end
+
+    describe "GET /api/v1/:garden_id" do
+        it "can return a garden's plants" do
+            get "/api/v1/#{@garden1.id}/plants"
+       
+            expect(response).to be_successful
+            json = JSON.parse(response.body, symbolize_names: true)
+      
+            expect(json[:data].length).to eq(2)
+            expect(json[:data][0][:type]). to eq("plant")
+            expect(json[:data][0][:attributes][:name]). to eq(@tulip[:name])
+            expect(json[:data][0][:attributes][:img_url]). to eq(@tulip[:img_url])
+            expect(json[:data][0][:attributes][:description]). to eq(@tulip[:description])
+            expect(json[:data][1][:type]). to eq("plant")
+            expect(json[:data][1][:attributes][:name]). to eq(@moss[:name])
+            expect(json[:data][1][:attributes][:img_url]). to eq(@moss[:img_url])
+            expect(json[:data][1][:attributes][:description]). to eq(@moss[:description])
+        end
+
+        it "can return an error if garden doesn't exist" do
+            get "/api/v1/9999999999/plants"
+
+            expect(response).to have_http_status(:not_found)
+
+            json = JSON.parse(response.body, symbolize_names: true)
+            expect(json[:error]).to eq("Garden not found")
+        end
+    end
       
 end
