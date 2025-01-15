@@ -1,9 +1,7 @@
 class ErrorSerializer
-  
-    def self.format_errors(messages)
-      {
-        message: 'Your query could not be completed',
-        errors: messages
-      }
-    end
+  def self.format_errors(errors)
+    {
+      errors: errors
+    }
+  end
 end

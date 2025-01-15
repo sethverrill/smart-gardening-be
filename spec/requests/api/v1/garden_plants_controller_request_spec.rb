@@ -144,7 +144,7 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             expect(response).to have_http_status(:not_found)
         
             json = JSON.parse(response.body, symbolize_names: true)
-            expect(json[:error]).to eq("Garden not found")
+            expect(json[:errors]).to eq("Garden not found")
           end
         
           it "returns a 404 if the garden plant is not found" do
@@ -153,7 +153,7 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             expect(response).to have_http_status(:not_found)
         
             json = JSON.parse(response.body, symbolize_names: true)
-            expect(json[:error]).to eq("Garden plant not found")
+            expect(json[:errors]).to eq("Garden plant not found")
           end
     end
       
