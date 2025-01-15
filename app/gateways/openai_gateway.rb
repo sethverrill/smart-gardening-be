@@ -1,4 +1,4 @@
-class OpenAIGateway
+class OpenaiGateway
   def generate_recommendations(params)
     prompt = build_prompt(params)
 
@@ -30,7 +30,7 @@ class OpenAIGateway
     else
       { success: false, error: "Failed to fetch plant recommendations." }
     end
-    rescue => error
+  rescue => error
       { success: false, error: "An error occurred: #{error.message}" }
   end
 

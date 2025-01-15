@@ -3,7 +3,7 @@ class Api::V1::RecommendationController < ApplicationController
 
   def index
     if params[:zip_code].blank?
-      render json: { error: "Zip code is required." }, status: 400
+      render json: ErrorSerializer.format_errors("Zip code is required."), status: :bad_request
       return
     end
 
@@ -16,7 +16,7 @@ class Api::V1::RecommendationController < ApplicationController
       return
     end
 
-    api_response = OpenAIGateway.new.generate_recommendations(processed_params)
+    api_response = OpenaiGateway.new.generate_recommendations(processed_params)
 
     render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
   end
