@@ -9,7 +9,7 @@ class Api::V1::GardensController < ApplicationController
   
   def create
     if Garden.exists?
-      render json: { error: "Only one garden allowed at this time" }, status: :unprocessable_entity
+      render json: ErrorSerializer.format_errors("Only one garden allowed at this time"), status: :unprocessable_entity
       return
     end
 
@@ -18,7 +18,7 @@ class Api::V1::GardensController < ApplicationController
     if garden.save
       render json: { data: { id: garden.id } }, status: :created
     else
-      render json: { errors: garden.errors.full_messages }, status: :unprocessable_entity
+      render json: ErrorSerializer.format_errors(garden.errors.full_messages), status: :unprocessable_entity
     end    
   end
 
@@ -26,14 +26,14 @@ class Api::V1::GardensController < ApplicationController
     garden = Garden.find_by(id: params[:id])
 
     if garden.nil?
-      render json: { errors: ["Garden not found"] }, status: :not_found
+      render json: ErrorSerializer.format_errors(["Garden not found"]), status: :not_found
       return
     end
 
     if garden.update(garden_params)
       render json: { data: garden }, status: :ok
     else
-      render json: { errors: garden.errors.full_messages }, status: :unprocessable_entity
+      render json: ErrorSerializer.format_errors(garden.errors.full_messages), status: :unprocessable_entity
     end
   end
 
