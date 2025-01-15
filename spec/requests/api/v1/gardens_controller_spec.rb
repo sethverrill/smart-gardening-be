@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::Gardens", type: :request do
 
         expect(response).to have_http_status(:unprocessable_entity)
         parsed_response = JSON.parse(response.body, symbolize_names: true)
-        expect(parsed_response[:errors]).to eq("Only one garden allowed at this time")
+        expect(parsed_response[:error]).to eq("Only one garden allowed at this time")
       end
     end
 
@@ -81,8 +81,8 @@ RSpec.describe "Api::V1::Gardens", type: :request do
 
         expect(response).to have_http_status(:unprocessable_entity)
         parsed_response = JSON.parse(response.body)
-        expect(parsed_response).to have_key('errors')
-        expect(parsed_response['errors']).to include("Name can't be blank", "Zip code can't be blank")
+        expect(parsed_response).to have_key('error')
+        expect(parsed_response['error']).to include("Name can't be blank", "Zip code can't be blank")
       end
     end
   end
@@ -109,7 +109,7 @@ RSpec.describe "Api::V1::Gardens", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
         parsed_response = JSON.parse(response.body, symbolize_names: true)
 
-        expect(parsed_response[:errors]).to include("Name can't be blank")
+        expect(parsed_response[:error]).to include("Name can't be blank")
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe "Api::V1::Gardens", type: :request do
         expect(response).to have_http_status(:not_found)
         parsed_response = JSON.parse(response.body, symbolize_names: true)
 
-        expect(parsed_response[:errors]).to include('Garden not found')
+        expect(parsed_response[:error]).to include('Garden not found')
       end
     end
   end

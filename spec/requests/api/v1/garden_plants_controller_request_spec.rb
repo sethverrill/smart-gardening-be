@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             patch "/api/v1/#{@garden1.id}", params: plant_params
 
             json_response = JSON.parse(response.body, symbolize_names: true)
-                expect(json_response[:errors]).to eq(["Validation failed: Img url can't be blank"])
+                expect(json_response[:error]).to eq(["Validation failed: Img url can't be blank"])
         end
 
         it "disregards additional fields" do
@@ -144,7 +144,7 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             expect(response).to have_http_status(:not_found)
         
             json = JSON.parse(response.body, symbolize_names: true)
-            expect(json[:errors]).to eq("Garden not found")
+            expect(json[:error]).to eq("Garden not found")
           end
         
           it "returns a 404 if the garden plant is not found" do
@@ -153,7 +153,7 @@ RSpec.describe "Api::V1::GardenPlants", type: :request do
             expect(response).to have_http_status(:not_found)
         
             json = JSON.parse(response.body, symbolize_names: true)
-            expect(json[:errors]).to eq("Garden plant not found")
+            expect(json[:error]).to eq("Garden plant not found")
           end
     end
       

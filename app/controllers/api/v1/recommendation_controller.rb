@@ -3,7 +3,7 @@ class Api::V1::RecommendationController < ApplicationController
 
   def index
     if params[:zip_code].blank?
-      render json: ErrorSerializer.format(["Zip code is required."], '400'), status: :bad_request
+      render json: ErrorSerializer.format_errors("Zip code is required."), status: :bad_request
       return
     end
 
