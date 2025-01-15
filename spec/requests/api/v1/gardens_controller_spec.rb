@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::Gardens", type: :request do
 
         expect(response).to have_http_status(:unprocessable_entity)
         parsed_response = JSON.parse(response.body, symbolize_names: true)
-        expect(parsed_response[:error]).to eq("Only one garden allowed at this time")
+        expect(parsed_response[:errors]).to eq("Only one garden allowed at this time")
       end
     end
 
