@@ -21,4 +21,3 @@ production:
   cable:
     <<: *default
     url: <%= ENV['DATABASE_URL'] %>
-    database: smart_gardening_cable
