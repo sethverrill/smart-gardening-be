@@ -31,7 +31,7 @@ class Api::V1::GardenPlantsController < ApplicationController
         else
           render json: ErrorSerializer.format_errors('Garden plant not found'), status: :not_found
         end
-      end
+    end
 
     def show
       garden = Garden.find(params[:garden_id])
