@@ -37,3 +37,5 @@
 # Ignore simplecov reports
 /coverage
 /config/credentials/production.key
+
+/config/credentials/cable.key

@@ -17,3 +17,7 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
+
+cable:
+  <<: *default
+  database: smart_gardening_cable
