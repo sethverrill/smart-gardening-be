@@ -19,7 +19,7 @@ class Api::V1::GardenPlantsController < ApplicationController
         garden = Garden.find_by(id: params[:garden_id])
         
         if garden.nil?
-          render json: { error: 'Garden not found' }, status: :not_found
+          render json: ErrorSerializer.format_errors(['Garden not found']), status: :not_found
           return
         end
       
@@ -29,7 +29,7 @@ class Api::V1::GardenPlantsController < ApplicationController
           garden_plant.destroy
           render json: { message: 'Garden plant removed successfully' }, status: :ok
         else
-          render json: { error: 'Garden plant not found' }, status: :not_found
+          render json: ErrorSerializer.format_errors(['Garden plant not found']), status: :not_found
         end
       end
 
