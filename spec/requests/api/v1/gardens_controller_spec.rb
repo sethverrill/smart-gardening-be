@@ -1,6 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Gardens", type: :request do
+  describe "GET /api/v1/gardens" do
+    let!(:gardens) {create_list(:garden, 3)}
+
+    it 'returns all gardens' do
+      get "/api/v1/gardens"
+
+      expect(response).to be_successful
+      json = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(json.length).to eq(3)
+      expect(json.first[:id]).to eq(gardens.first.id)
+      expect(json.first[:name]).to eq(gardens.first.name)
+    end
+
+      it "returns an empty array when no garden exists" do
+
+        Garden.destroy_all
+        get "/api/v1/gardens"
+
+        expect(response).to be_successful  
+        json = JSON.parse(response.body, symbolize_names: true)
+
+        expect(json).to be_empty 
+      end
+  end
   describe "GET /api/v1/gardens/:id" do
     let!(:garden) { create(:garden) }
 
