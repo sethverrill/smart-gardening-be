@@ -2,6 +2,11 @@ class Api::V1::GardensController < ApplicationController
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
+  def index
+    gardens = Garden.all
+    render json: gardens, status: :ok
+  end
+
   def show
     garden = Garden.find(params[:id])
     render json: garden 
