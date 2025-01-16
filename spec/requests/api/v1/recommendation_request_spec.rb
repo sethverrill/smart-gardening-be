@@ -21,16 +21,16 @@ RSpec.describe 'Recommendation API', type: :request do
         expect(json[:data].length).to eq(3)
         expect(json[:data][0][:index]).to eq(1)
         expect(json[:data][0][:attributes][:name]).to eq("Asparagus")
-        expect(json[:data][0][:attributes][:description]).to eq("Asparagus thrives in well-drained clay soil and requires minimal watering once established")
-        expect(json[:data][0][:attributes][:image]).to eq("https://upload.wikimedia.org/wikipedia/commons/0/05/Asparagus_officinalis_-_Asparagus.jpg")
+        expect(json[:data][0][:attributes][:description]).to eq("Asparagus thrives in well-drained clay soil and requires minimal watering once established.")
+        expect(json[:data][0][:attributes][:image]).to eq("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Asparagus_officinalis_02.jpg/800px-Asparagus_officinalis_02.jpg")
         expect(json[:data][1][:index]).to eq(2)
         expect(json[:data][1][:attributes][:name]).to eq("Rhubarb")
-        expect(json[:data][1][:attributes][:description]).to eq("Rhubarb is a hardy perennial that can tolerate clay soil and requires little water after establishment")
-        expect(json[:data][1][:attributes][:image]).to eq("https://upload.wikimedia.org/wikipedia/commons/8/8c/Rhubarb_Rheum_rhabarbarum.jpg")
+        expect(json[:data][1][:attributes][:description]).to eq("Rhubarb is a hardy perennial that can tolerate clay soil and requires little water after establishment.")
+        expect(json[:data][1][:attributes][:image]).to eq("https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Rhubarb_plant.jpg/800px-Rhubarb_plant.jpg")
         expect(json[:data][2][:index]).to eq(3)
         expect(json[:data][2][:attributes][:name]).to eq("Thyme")
         expect(json[:data][2][:attributes][:description]).to eq("Thyme is a drought-tolerant herb that grows well in clay soil and enjoys full sun.")
-        expect(json[:data][2][:attributes][:image]).to eq("https://upload.wikimedia.org/wikipedia/commons/4/4f/Chives_%28Allium_schoenoprasum%29.jpg")
+        expect(json[:data][2][:attributes][:image]).to eq("https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Thymus_vulgaris_02.jpg/800px-Thymus_vulgaris_02.jpg")
       end
     end
     context 'sad path' do
