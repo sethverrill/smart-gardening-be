@@ -5,7 +5,7 @@ class Api::V1::GardenPlantsController < ApplicationController
 
     def update
         garden = Garden.find(params[:garden_id])
-      
+       
         plant = find_or_create_plant(params)
 
         unless check_garden_plant(garden,plant)
@@ -31,7 +31,13 @@ class Api::V1::GardenPlantsController < ApplicationController
         else
           render json: ErrorSerializer.format_errors('Garden plant not found'), status: :not_found
         end
-      end
+    end
+
+    def show
+      garden = Garden.find(params[:garden_id])
+
+      render json: GardenPlantSerializer.format(garden), status: 200
+    end
 
     private
     def plant_params

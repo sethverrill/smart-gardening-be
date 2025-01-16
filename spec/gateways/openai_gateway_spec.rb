@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative '../../app/gateways/openai_gateway'
 
-RSpec.describe OpenAIGateway do
+RSpec.describe OpenaiGateway do
   describe "generate_recommendations" do
     let(:valid_params) do
       {
@@ -14,36 +14,38 @@ RSpec.describe OpenAIGateway do
     end
 
     it "returns recommendations when OpenAI API responds successfully" do
-      stubbed_response = File.read("spec/fixtures/openai_gateway_stubbed.json")
+      VCR.use_cassette("openai_gateway_success") do
+        stubbed_response = File.read("spec/fixtures/openai_gateway_stubbed.json")
 
-      stub_request(:post, "https://api.openai.com/v1/chat/completions")
-        .with(
-          headers: {
-            "Content-Type" => "application/json",
-            "Authorization" => "Bearer #{Rails.application.credentials.dig(:open_ai, :key)}"
-          }
-        )
-        .to_return(status: 200, body: stubbed_response)
+        stub_request(:post, "https://api.openai.com/v1/chat/completions")
+          .with(
+            headers: {
+              "Content-Type" => "application/json",
+              "Authorization" => "Bearer #{Rails.application.credentials.dig(:open_ai, :key)}"
+            }
+          )
+          .to_return(status: 200, body: stubbed_response)
 
-      gateway = OpenAIGateway.new
-      result = gateway.generate_recommendations(valid_params)
+        gateway = OpenaiGateway.new
+        result = gateway.generate_recommendations(valid_params)
 
-      expect(result[:success]).to be true
-      expect(result[:id]).to eq("mock-chatcmpl-123")
-      expect(result[:data]).to be_an Array
-      expect(result[:data].length).to eq(2)
+        expect(result[:success]).to be true
+        expect(result[:id]).to eq("mock-chatcmpl-123")
+        expect(result[:data]).to be_an Array
+        expect(result[:data].length).to eq(2)
 
-      first_recommendation = result[:data][0]
-      expect(first_recommendation["name"]).to eq("Tomato")
-      expect(first_recommendation["description"]).to eq("Thrives in full sun.")
-      expect(first_recommendation["image"]).to eq("https://example.com/tomato.jpg")
+        first_recommendation = result[:data][0]
+        expect(first_recommendation["name"]).to eq("Tomato")
+        expect(first_recommendation["description"]).to eq("Thrives in full sun.")
+        expect(first_recommendation["image"]).to eq("https://example.com/tomato.jpg")
+      end
     end
 
     it "handles API errors gracefully" do
       stub_request(:post, "https://api.openai.com/v1/chat/completions")
         .to_return(status: 500, body: "")
 
-      gateway = OpenAIGateway.new
+      gateway = OpenaiGateway.new
       result = gateway.generate_recommendations(valid_params)
 
       expect(result[:success]).to be false
@@ -56,7 +58,7 @@ RSpec.describe OpenAIGateway do
       stub_request(:post, "https://api.openai.com/v1/chat/completions")
         .to_return(status: 200, body: stubbed_response)
 
-      gateway = OpenAIGateway.new
+      gateway = OpenaiGateway.new
       result = gateway.generate_recommendations(valid_params)
 
       expect(result[:success]).to be false
@@ -66,7 +68,7 @@ RSpec.describe OpenAIGateway do
     it "handles exceptions gracefully" do
       allow(Faraday).to receive(:post).and_raise(StandardError.new("Connection error"))
 
-      gateway = OpenAIGateway.new
+      gateway = OpenaiGateway.new
       result = gateway.generate_recommendations(valid_params)
 
       expect(result[:success]).to be false
