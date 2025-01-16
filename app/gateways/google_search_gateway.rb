@@ -15,7 +15,7 @@ class GoogleSearchGateway
     plant_data.map do |plant|
       if plant[:name].present? || plant["name"].present?
         google_data = fetch_google_data(plant[:name] || plant["name"])
-        plant.merge(google_data) if google_data
+        google_data ? plant.merge(google_data) : plant
       else
         plant
       end
