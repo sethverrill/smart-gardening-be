@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root 'gardens#show'
+  
+  root 'api/v1/gardens#index'
 
   namespace :api do
     namespace :v1 do
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
       patch ':garden_id', to: 'garden_plants#update'
       delete '/gardens/:garden_id/plants/:plant_id', to: 'garden_plants#destroy'
       get ':garden_id/plants', to: 'garden_plants#show'
+      get 'api/v1/gardens', to: 'gardens#index'
     end
   end
 end
