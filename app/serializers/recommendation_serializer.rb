@@ -9,7 +9,10 @@ class RecommendationSerializer
           attributes: {
             name: recommendation[:name] || recommendation["name"],
             description: recommendation[:description] || recommendation["description"],
-            image: recommendation[:image] || recommendation["image"]
+            image: recommendation[:image] || recommendation["image"],
+            title: recommendation[:title],
+            snippet: recommendation[:snippet],
+            context_link: recommendation[:context_link]
           }
         }
       end
