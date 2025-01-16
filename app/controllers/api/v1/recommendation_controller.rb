@@ -1,5 +1,6 @@
 class Api::V1::RecommendationController < ApplicationController
   require_relative '../../../gateways/openai_gateway'
+  require_relative '../../../gateways/google_search_gateway'
 
   def index
     if params[:zip_code].blank?
@@ -12,12 +13,18 @@ class Api::V1::RecommendationController < ApplicationController
     if Rails.env.test? || Rails.env.development?
       mock_response = File.read("spec/fixtures/recommendation_stubbed_response.json")
       api_response = JSON.parse(mock_response, symbolize_names: true)
-      render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
+      enriched_data = GoogleSearchGateway.new.enrich_with_google_data(api_response[:data])
+      render json: RecommendationSerializer.format_recommendations(enriched_data, api_response[:id]), status: 200
       return
     end
 
     api_response = OpenaiGateway.new.generate_recommendations(processed_params)
 
-    render json: RecommendationSerializer.format_recommendations(api_response[:data], api_response[:id]), status: 200
+    if api_response[:success]
+      enriched_data = GoogleSearchGateway.new.enrich_with_google_data(api_response[:data])
+      render json: RecommendationSerializer.format_recommendations(enriched_data, api_response[:id]), status: 200
+    else
+      render json: ErrorSerializer.format_errors(api_response[:error]), status: :internal_server_error
+    end
   end
 end
