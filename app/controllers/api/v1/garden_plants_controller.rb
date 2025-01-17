@@ -48,11 +48,7 @@ class Api::V1::GardenPlantsController < ApplicationController
         plant = Plant.find_by(name: params[:name])
         return plant if plant
       
-        Plant.create!(
-          name: params[:name],
-          img_url: params[:img_url],
-          description: params[:description]
-        )
+        Plant.create!(plant_params)
     end
 
     def check_garden_plant(garden, plant)

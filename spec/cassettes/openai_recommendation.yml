@@ -1,0 +1,449 @@
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://api.openai.com/v1/chat/completions
+      body:
+        encoding: UTF-8
+        string:
+          '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"\n      Suggest
+          2-3 plants for a garden based on these criteria:\n      Zip: 80221, Sunlight:
+          full_sun, Soil: clay,\n      Water: low_water, Purpose: edible.\n      ONLY
+          return a JSON array where each element has the following keys:\n      - name:
+          the plant''s name\n      - description: a brief sentence about why this plant
+          is suitable\n      - image: a URL to a real example image of the plant.\n      Do
+          NOT include any additional text or explanation.\n    "}],"max_tokens":300,"temperature":0.7}'
+      headers:
+        User-Agent:
+          - Faraday v2.12.2
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer {'<API_KEY>'}
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Date:
+          - Thu, 16 Jan 2025 23:01:10 GMT
+        Content-Type:
+          - application/json
+        Transfer-Encoding:
+          - chunked
+        Connection:
+          - keep-alive
+        Access-Control-Expose-Headers:
+          - X-Request-ID
+        Openai-Organization:
+          - turing-school-hmcjza
+        Openai-Processing-Ms:
+          - "3545"
+        Openai-Version:
+          - "2020-10-01"
+        X-Ratelimit-Limit-Requests:
+          - "10000"
+        X-Ratelimit-Limit-Tokens:
+          - "200000"
+        X-Ratelimit-Remaining-Requests:
+          - "9999"
+        X-Ratelimit-Remaining-Tokens:
+          - "199586"
+        X-Ratelimit-Reset-Requests:
+          - 8.64s
+        X-Ratelimit-Reset-Tokens:
+          - 124ms
+        X-Request-Id:
+          - req_e0ebf1eced2ae4220fa14d014d2becec
+        Strict-Transport-Security:
+          - max-age=31536000; includeSubDomains; preload
+        Cf-Cache-Status:
+          - DYNAMIC
+        Set-Cookie:
+          - __cf_bm=iY74XNnG3dmxwsi4IjTCnpAH0SgvBLHcm_n42QMyKec-1737068470-1.0.1.1-AkArDeE_9iYMzTda_j6bCGXZW0rEvUJ6jta5vvQVy7rgCPSTnIA53x4ucdAjtit930yptMCaH.CLa.Rbn8lHPA;
+            path=/; expires=Thu, 16-Jan-25 23:31:10 GMT; domain=.api.openai.com; HttpOnly;
+            Secure; SameSite=None
+          - _cfuvid=qcT6Ah2.p4i2dzH7IcKCMbZ7GtH17fn0u7mNLYM7Okw-1737068470829-0.0.1.1-604800000;
+            path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+        X-Content-Type-Options:
+          - nosniff
+        Server:
+          - cloudflare
+        Cf-Ray:
+          - 9031b9bcce251f52-DEN
+        Alt-Svc:
+          - h3=":443"; ma=86400
+      body:
+        encoding: ASCII-8BIT
+        string: |
+          {
+            "id": "chatcmpl-AqT9Hr24KfUfj8tdnIJlxGoL7peuP",
+            "object": "chat.completion",
+            "created": 1737068467,
+            "model": "gpt-4o-mini-2024-07-18",
+            "choices": [
+              {
+                "index": 0,
+                "message": {
+                  "role": "assistant",
+                  "content": "```json\n[\n    {\n        \"name\": \"Asparagus\",\n        \"description\": \"Asparagus thrives in well-drained clay soil and requires minimal watering once established.\",\n        \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Asparagus_officinalis_02.jpg/800px-Asparagus_officinalis_02.jpg\"\n    },\n    {\n        \"name\": \"Rhubarb\",\n        \"description\": \"Rhubarb is a hardy perennial that can tolerate clay soil and requires little water after establishment.\",\n        \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Rhubarb_plant.jpg/800px-Rhubarb_plant.jpg\"\n    },\n    {\n        \"name\": \"Thyme\",\n        \"description\": \"Thyme is a drought-tolerant herb that grows well in clay soil and enjoys full sun.\",\n        \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Thymus_vulgaris_02.jpg/800px-Thymus_vulgaris_02.jpg\"\n    }\n]\n```",
+                  "refusal": null
+                },
+                "logprobs": null,
+                "finish_reason": "stop"
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 114,
+              "completion_tokens": 239,
+              "total_tokens": 353,
+              "prompt_tokens_details": {
+                "cached_tokens": 0,
+                "audio_tokens": 0
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 0,
+                "audio_tokens": 0,
+                "accepted_prediction_tokens": 0,
+                "rejected_prediction_tokens": 0
+              }
+            },
+            "service_tier": "default",
+            "system_fingerprint": "fp_72ed7ab54c"
+          }
+    recorded_at: Thu, 16 Jan 2025 23:01:10 GMT
+  - request:
+      method: get
+      uri: https://www.googleapis.com/customsearch/v1?cx=70edf480a47bc421b&key='<API_KEY>'&num=1&q=Asparagus&searchType=image
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        User-Agent:
+          - Faraday v2.12.2
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=UTF-8
+        Vary:
+          - Origin
+          - Referer
+          - X-Origin
+        Date:
+          - Thu, 16 Jan 2025 23:01:11 GMT
+        Server:
+          - ESF
+        X-Xss-Protection:
+          - "0"
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Content-Type-Options:
+          - nosniff
+        Alt-Svc:
+          - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+        Transfer-Encoding:
+          - chunked
+      body:
+        encoding: ASCII-8BIT
+        string: |
+          {
+            "kind": "customsearch#search",
+            "url": {
+              "type": "application/json",
+              "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+            },
+            "queries": {
+              "request": [
+                {
+                  "title": "Google Custom Search - Asparagus",
+                  "totalResults": "88800",
+                  "searchTerms": "Asparagus",
+                  "count": 1,
+                  "startIndex": 1,
+                  "inputEncoding": "utf8",
+                  "outputEncoding": "utf8",
+                  "safe": "off",
+                  "cx": "70edf480a47bc421b",
+                  "searchType": "image"
+                }
+              ],
+              "nextPage": [
+                {
+                  "title": "Google Custom Search - Asparagus",
+                  "totalResults": "88800",
+                  "searchTerms": "Asparagus",
+                  "count": 1,
+                  "startIndex": 2,
+                  "inputEncoding": "utf8",
+                  "outputEncoding": "utf8",
+                  "safe": "off",
+                  "cx": "70edf480a47bc421b",
+                  "searchType": "image"
+                }
+              ]
+            },
+            "context": {
+              "title": "Image Search"
+            },
+            "searchInformation": {
+              "searchTime": 0.202999,
+              "formattedSearchTime": "0.20",
+              "totalResults": "88800",
+              "formattedTotalResults": "88,800"
+            },
+            "items": [
+              {
+                "kind": "customsearch#result",
+                "title": "File:Asparagus-Bundle.jpg - Wikipedia",
+                "htmlTitle": "File:\u003cb\u003eAsparagus\u003c/b\u003e-Bundle.jpg - Wikipedia",
+                "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Asparagus-Bundle.jpg/1200px-Asparagus-Bundle.jpg",
+                "displayLink": "en.m.wikipedia.org",
+                "snippet": "File:Asparagus-Bundle.jpg - Wikipedia",
+                "htmlSnippet": "File:\u003cb\u003eAsparagus\u003c/b\u003e-Bundle.jpg - Wikipedia",
+                "mime": "image/jpeg",
+                "fileFormat": "image/jpeg",
+                "image": {
+                  "contextLink": "https://en.m.wikipedia.org/wiki/File:Asparagus-Bundle.jpg",
+                  "height": 3046,
+                  "width": 1200,
+                  "byteSize": 509429,
+                  "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnDQPCcCMLBUTBvzAJ9_sTzZtl6ycR-q82fMfmMcVnaxyo9fY0uVfi_kI&s",
+                  "thumbnailHeight": 150,
+                  "thumbnailWidth": 59
+                }
+              }
+            ]
+          }
+    recorded_at: Thu, 16 Jan 2025 23:01:11 GMT
+  - request:
+      method: get
+      uri: https://www.googleapis.com/customsearch/v1?cx=70edf480a47bc421b&key='<API_KEY>'=1&q=Rhubarb&searchType=image
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        User-Agent:
+          - Faraday v2.12.2
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=UTF-8
+        Vary:
+          - Origin
+          - Referer
+          - X-Origin
+        Date:
+          - Thu, 16 Jan 2025 23:01:11 GMT
+        Server:
+          - ESF
+        X-Xss-Protection:
+          - "0"
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Content-Type-Options:
+          - nosniff
+        Alt-Svc:
+          - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+        Transfer-Encoding:
+          - chunked
+      body:
+        encoding: ASCII-8BIT
+        string: |
+          {
+            "kind": "customsearch#search",
+            "url": {
+              "type": "application/json",
+              "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+            },
+            "queries": {
+              "request": [
+                {
+                  "title": "Google Custom Search - Rhubarb",
+                  "totalResults": "35600",
+                  "searchTerms": "Rhubarb",
+                  "count": 1,
+                  "startIndex": 1,
+                  "inputEncoding": "utf8",
+                  "outputEncoding": "utf8",
+                  "safe": "off",
+                  "cx": "70edf480a47bc421b",
+                  "searchType": "image"
+                }
+              ],
+              "nextPage": [
+                {
+                  "title": "Google Custom Search - Rhubarb",
+                  "totalResults": "35600",
+                  "searchTerms": "Rhubarb",
+                  "count": 1,
+                  "startIndex": 2,
+                  "inputEncoding": "utf8",
+                  "outputEncoding": "utf8",
+                  "safe": "off",
+                  "cx": "70edf480a47bc421b",
+                  "searchType": "image"
+                }
+              ]
+            },
+            "context": {
+              "title": "Image Search"
+            },
+            "searchInformation": {
+              "searchTime": 0.17822,
+              "formattedSearchTime": "0.18",
+              "totalResults": "35600",
+              "formattedTotalResults": "35,600"
+            },
+            "items": [
+              {
+                "kind": "customsearch#result",
+                "title": "Rhubarb - Wikipedia",
+                "htmlTitle": "\u003cb\u003eRhubarb\u003c/b\u003e - Wikipedia",
+                "link": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Rheum_rhabarbarum.2006-04-27.uellue.jpg",
+                "displayLink": "en.wikipedia.org",
+                "snippet": "Rhubarb - Wikipedia",
+                "htmlSnippet": "\u003cb\u003eRhubarb\u003c/b\u003e - Wikipedia",
+                "mime": "image/jpeg",
+                "fileFormat": "image/jpeg",
+                "image": {
+                  "contextLink": "https://en.wikipedia.org/wiki/Rhubarb",
+                  "height": 1536,
+                  "width": 2048,
+                  "byteSize": 1535959,
+                  "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS6K90gxAmj7q1M61LxiG3ceZm-vHAL5wA59xxoR7n_Kv5CHg49hym_w&s",
+                  "thumbnailHeight": 113,
+                  "thumbnailWidth": 150
+                }
+              }
+            ]
+          }
+    recorded_at: Thu, 16 Jan 2025 23:01:11 GMT
+  - request:
+      method: get
+      uri: https://www.googleapis.com/customsearch/v1?cx=70edf480a47bc421b&key='<API_KEY>'=1&q=Thyme&searchType=image
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        User-Agent:
+          - Faraday v2.12.2
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=UTF-8
+        Vary:
+          - Origin
+          - Referer
+          - X-Origin
+        Date:
+          - Thu, 16 Jan 2025 23:01:11 GMT
+        Server:
+          - ESF
+        X-Xss-Protection:
+          - "0"
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Content-Type-Options:
+          - nosniff
+        Alt-Svc:
+          - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+        Transfer-Encoding:
+          - chunked
+      body:
+        encoding: ASCII-8BIT
+        string: |
+          {
+            "kind": "customsearch#search",
+            "url": {
+              "type": "application/json",
+              "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+            },
+            "queries": {
+              "request": [
+                {
+                  "title": "Google Custom Search - Thyme",
+                  "totalResults": "94900",
+                  "searchTerms": "Thyme",
+                  "count": 1,
+                  "startIndex": 1,
+                  "inputEncoding": "utf8",
+                  "outputEncoding": "utf8",
+                  "safe": "off",
+                  "cx": "70edf480a47bc421b",
+                  "searchType": "image"
+                }
+              ],
+              "nextPage": [
+                {
+                  "title": "Google Custom Search - Thyme",
+                  "totalResults": "94900",
+                  "searchTerms": "Thyme",
+                  "count": 1,
+                  "startIndex": 2,
+                  "inputEncoding": "utf8",
+                  "outputEncoding": "utf8",
+                  "safe": "off",
+                  "cx": "70edf480a47bc421b",
+                  "searchType": "image"
+                }
+              ]
+            },
+            "context": {
+              "title": "Image Search"
+            },
+            "searchInformation": {
+              "searchTime": 0.318128,
+              "formattedSearchTime": "0.32",
+              "totalResults": "94900",
+              "formattedTotalResults": "94,900"
+            },
+            "items": [
+              {
+                "kind": "customsearch#result",
+                "title": "Thyme - Wikipedia",
+                "htmlTitle": "\u003cb\u003eThyme\u003c/b\u003e - Wikipedia",
+                "link": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Thyme-Bundle.jpg",
+                "displayLink": "en.wikipedia.org",
+                "snippet": "Thyme - Wikipedia",
+                "htmlSnippet": "\u003cb\u003eThyme\u003c/b\u003e - Wikipedia",
+                "mime": "image/jpeg",
+                "fileFormat": "image/jpeg",
+                "image": {
+                  "contextLink": "https://en.wikipedia.org/wiki/Thyme",
+                  "height": 2280,
+                  "width": 4160,
+                  "byteSize": 4194985,
+                  "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQze_tdfJVNYD4LLJv8azVmAHWHSz7j2UrOUw6A1vUXtfHx0PDt-yjXUw&s",
+                  "thumbnailHeight": 82,
+                  "thumbnailWidth": 150
+                }
+              }
+            ]
+          }
+    recorded_at: Thu, 16 Jan 2025 23:01:11 GMT
+recorded_with: VCR 6.3.1
