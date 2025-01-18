@@ -1,7 +1,7 @@
 # Smart Gardening
 
 ## Description
-Smart Gardening is an application that allows the user to determine which plants will thrive in their gardens by leveraging the power of OpenAI and Google Cloud API. By entering your location and plant needs, the app provides a tailored suggestions for a sucessful garden.  The app includes features such as:
+Smart Gardening is an application that allows the user to determine which plants will thrive in their gardens by leveraging the power of OpenAI and Google Cloud API. By entering your location and plant needs, the app provides tailored suggestions for a sucessful garden.  The app includes features such as:
 - A homepage where the user can input their information.
 - A detailed view of plants that would thrive.
 - The ability to save those plants to your garden.
