@@ -8,7 +8,7 @@ Smart Gardening is an application that allows the user to determine which plants
 - The ability to navigate to your garden and see your plants.
 
 
-## installation Steps
+## Installation Steps
 1. Clone the Repository: [Smart Gardening](https://github.com/sethverrill/smart-gardening-be).
 2. Install Dependencies:
 ```bundle install```
