@@ -19,6 +19,36 @@ Smart Gardening is an application that allows the user to determine which plants
 4. Start Your rails server: 
 ```rails server```
 
+## Routes
+### Gardens Routes
+
+GET /api/v1/gardens
+- Lists all gardens.
+
+GET /api/v1/gardens/:id
+- Displays a specific garden by its ID.
+
+POST /api/v1/gardens
+- Creates a new garden.
+
+PATCH /api/v1/gardens/:id
+- Updates an existing garden by its ID.
+
+### Plant Routes
+
+GET /api/v1/gardens/:garden_id/plants
+- Lists all plants in a specific garden.
+
+PATCH /api/v1/gardens/:garden_id/plants
+- Updates a plant in a specific garden.
+
+DELETE /api/v1/gardens/:garden_id/plants/:plant_id
+- Deletes a plant from a specific garden.
+
+### Recommendation Routes
+GET /api/v1/recommendation
+- Provides recommendations.
+
 
 ## Links
 - **Deployed Application**: [Smart Gardening Live Site](https://smart-gardening-fe.vercel.app/)
