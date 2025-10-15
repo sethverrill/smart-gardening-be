@@ -16,12 +16,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      # Keep the standard RESTful routes first
+      resources :gardens, only: [:index, :show, :create, :update]
+
       resources :recommendation, only: [:index]
-      resources :gardens, only: [:index, :show, :create, :update]  
+
+      # Custom garden plant routes go after gardens resources
       patch ':garden_id', to: 'garden_plants#update'
       delete '/gardens/:garden_id/plants/:plant_id', to: 'garden_plants#destroy'
       get ':garden_id/plants', to: 'garden_plants#show'
-      get 'api/v1/gardens', to: 'gardens#index'
     end
   end
+
 end
