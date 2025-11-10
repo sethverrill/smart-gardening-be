@@ -9,8 +9,12 @@ class Api::V1::RecommendationController < ApplicationController
     end
 
     processed_params = RecommendationParamsProcessor.new(params).process
+    
+    puts "Processed_params #{processed_params}"
 
     api_response = OpenaiGateway.new.generate_recommendations(processed_params)
+    
+    puts "api_response #{api_response}"
 
     if api_response[:success]
       enriched_data = GoogleSearchGateway.new.enrich_with_google_data(api_response[:data])
